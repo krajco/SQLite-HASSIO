@@ -46,7 +46,6 @@ then
   else
     SQL_QUERY=$(sqlite3 ${DATABASE} "SELECT ${COLUMN} from ${TABLE} where ${WHERE}")
   fi
-
 elif [[ ${STATES} != "" ]]
 then
   TABLE="states"
@@ -56,9 +55,6 @@ then
 else
   echo "Select events or states (-e / -s)"
 fi
-
-
-
 
 GREP_JSON_ITEM=$(echo ${SQL_QUERY} | grep -Po "\"${ITEM}\": ( \"(.*?)\"|\"(.*?)\")" )
 ITEM_VAL=$(echo $GREP_JSON_ITEM| cut -d'"' -f 4)
